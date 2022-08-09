@@ -2,27 +2,27 @@ import './App.css';
 import { useState } from 'react';
 
 function App() {
-  
-  const [name, setName] = useState('Kevin')
   const [events, setEvents] = useState([
     {title: 'study', id: 1},
     {title: 'work', id: 2},
     {title: 'fitness', id: 3}
   ]) 
 
-  const handleClick = () => {
-    setName('Penny')
-    console.log(name)
+  const handleClick = (id) => {
+    setEvents(events.filter((event) => {
+      return id !== event.id
+    }))
+    console.log(id)
   }
 
   return (
     <div className="App">
-      <h1>my name is {name}</h1>
-      <button onClick={handleClick}>change name</button>
-      {events.map((event) => (
+      
+      {events.map((event, index) => (
         <div key={event.id}>
-          <h2>
-            {event.title}
+          <h2>{index} - 
+            {event.title} 
+            <button onClick={() => {handleClick(event.id)}}>delete event</button>
           </h2>
         </div>
       ))}
