@@ -1,8 +1,10 @@
 import "./App.css";
 import Title from "./components/Title";
+import Modal from "./components/Modal";
 import { useState } from "react";
 
 function App() {
+  const [showModal, setShowModal] = useState(false);
   const [showEvents, setShowEvents] = useState(true);
   const [events, setEvents] = useState([
     { title: "study", id: 1 },
@@ -19,9 +21,15 @@ function App() {
     console.log(id);
   };
 
+  const handleClose = () => {
+    setShowModal(false);
+  };
+  console.log(showModal);
+
   return (
     <div className="App">
-      <Title title="Events testing"/>
+      <Title title="Events testing" />
+
       {showEvents && (
         <div>
           <button onClick={() => setShowEvents(false)}>hide events</button>
@@ -47,6 +55,22 @@ function App() {
             </h2>
           </div>
         ))}
+
+      {showModal && (
+        <Modal handleClose={handleClose}>
+          <h2>10% code</h2>
+          <p>marketing modal</p>
+        </Modal>
+      )}
+      <div>
+        <button
+          onClick={() => {
+            setShowModal(true);
+          }}
+        >
+          show modal
+        </button>
+      </div>
     </div>
   );
 }
