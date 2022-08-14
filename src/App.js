@@ -26,7 +26,6 @@ function App() {
   const handleClose = () => {
     setShowModal(false);
   };
-  console.log(showModal);
 
   return (
     <div className="App">
